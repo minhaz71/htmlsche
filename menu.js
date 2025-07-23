@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById('navbar').innerHTML = `
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
   <div class="container">
-    <a class="navbar-brand" href="index.html">UAE Directory</a>
+    <a class="navbar-brand" href="index.html">Business Hub</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -115,4 +115,31 @@ document.getElementById('footer-menu').innerHTML = `
     </div>
   </footer>
 `;
+
+// Fade in shop cards on scroll
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.shop-card');
+
+  function fadeInOnScroll() {
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 100) {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0) scale(1) rotateX(0)';
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px) scale(0.98) rotateX(5deg)';
+      }
+    });
+  }
+
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px) scale(0.98) rotateX(5deg)';
+    card.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+  });
+
+  window.addEventListener('scroll', fadeInOnScroll);
+  fadeInOnScroll();
+});
 
